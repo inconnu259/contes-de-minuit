@@ -5,6 +5,7 @@ services:
     container_name: php
     build:
       context: ./backend
+      target: php_base
     ports:
       - '9000:9000'
     volumes:
@@ -61,8 +62,6 @@ services:
       - symfony
 
 volumes:
-  caddy_data:
-  caddy_config:
   database_data:
 
 networks:

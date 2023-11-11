@@ -2,10 +2,11 @@ version: "3.8"
 
 # Development environment override
 services:
+  php:
+    build:
+      target: php_dev
+    command: bash -c "composer install && php bin/console doctrine:schema:update --force && php bin/console doctrine:fixtures:load -n && php-fpm"
 
-  database:
-    ports:
-      - '5432:5432'
 
   adminer:
     container_name: adminer
@@ -17,3 +18,20 @@ services:
       - database
     networks:
       - symfony
+
+  database:
+    ports:
+      - '5432:5432'
+
+  web:
+    build:
+      context: frontend
+      target: dev-envs
+    depends_on:
+      - php
+    ports:
+      - '4200:4200'
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./frontend:/project
+      - /project/node_modules

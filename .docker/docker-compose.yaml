@@ -1,6 +1,11 @@
 version: "3.8"
 
 services:
+  php:
+    build:
+      target: php_dev
+
+
   adminer:
     container_name: adminer
     image: adminer
