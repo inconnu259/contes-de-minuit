@@ -1,0 +1,70 @@
+version: "3.8"
+
+services:
+  php:
+    container_name: php
+    build:
+      context: ./backend
+    ports:
+      - '9000:9000'
+    volumes:
+      - ./backend/app:/var/www/symfony_docker
+    depends_on:
+      - database
+    networks:
+      - symfony
+
+  nginx:
+    container_name: nginx
+    image: nginx:stable-alpine
+    ports:
+      - '80:80'
+    volumes:
+      - ./backend/app:/var/www/symfony_docker
+      - ./backend/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+      - database
+    networks:
+      - symfony
+
+    ###> doctrine/doctrine-bundle ###
+  database:
+    container_name: database
+    image: postgres:${POSTGRES_VERSION:-15}-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-app}
+      # You should definitely change the password in production
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-!ChangeMe!}
+      POSTGRES_USER: ${POSTGRES_USER:-app}
+    volumes:
+      - database_data:/var/lib/postgresql/data:rw
+      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
+      # - ./docker/db/data:/var/lib/postgresql/data:rw
+    networks:
+      - symfony
+  ###< doctrine/doctrine-bundle ###
+  
+  web:
+    container_name: angular
+    build:
+      context: ./frontend
+      target: builder
+    depends_on: 
+      - php
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./frontend:/project
+      - /project/node_modules
+    networks:
+      - symfony
+
+volumes:
+  caddy_data:
+  caddy_config:
+  database_data:
+
+networks:
+  symfony:
+    driver: bridge
