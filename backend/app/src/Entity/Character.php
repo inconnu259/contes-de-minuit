@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\CharacterRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CharacterRepository::class)]
 class Character
@@ -15,27 +16,38 @@ class Character
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "title is mandatory")]
+    #[Assert\Length(min: 1, max: 255, minMessage: "title should have at less {{ limit }} characters", maxMessage: "title can't have more than {{ limit }} characters")]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "concept is mandatory")]
+    #[Assert\Length(min: 1, max: 255, minMessage: "concept should have at less {{ limit }} characters", maxMessage: "concept can't have more than {{ limit }} characters")]
     private ?string $concept = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank(message: "description is mandatory")]
     private ?string $description = null;
 
     #[ORM\Column(nullable: true)]
     private ?int $age = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "motivation is mandatory")]
+    #[Assert\Length(min: 1, max: 255, minMessage: "motivation should have at less {{ limit }} characters", maxMessage: "motivation can't have more than {{ limit }} characters")]
     private ?string $motivation = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank(message: "quest is mandatory")]
     private ?string $quest = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "place is mandatory")]
+    #[Assert\Length(min: 1, max: 255, minMessage: "place should have at less {{ limit }} characters", maxMessage: "place can't have more than {{ limit }} characters")]
     private ?string $place = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank(message: "ether is mandatory")]
     private ?int $ether = null;
 
     public function getId(): ?int
