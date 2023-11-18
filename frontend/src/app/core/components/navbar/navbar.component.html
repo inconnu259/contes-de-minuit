@@ -1,6 +1,19 @@
-<nav>
-    <ul>
-        <li><a routerLink="/">Home</a></li>
-        <li><a routerLink="/login">Login</a></li>
-    </ul>
-</nav>
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span mat-button [routerLink]="'/'">Contes de Minuit</span>
+    <span class="spacer"></span>
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Login menu">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <span mat-button [routerLink]="'/login'">Login</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar-row>
+  <mat-toolbar-row>
+    <button mat-button [routerLink]="'/characters'">Personnages</button>
+    <button mat-button [routerLink]="'/campagns'">Campagnes</button>
+    <button mat-button [routerLink]="'/map'">Carte</button>
+  </mat-toolbar-row>
+</mat-toolbar>
