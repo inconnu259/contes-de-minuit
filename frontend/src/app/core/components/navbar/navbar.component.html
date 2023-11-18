@@ -2,17 +2,27 @@
   <mat-toolbar-row>
     <span mat-button [routerLink]="'/'">Contes de Minuit</span>
     <span class="spacer"></span>
-    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Login menu">
+    <button mat-icon-button [matMenuTriggerFor]="loginMenu" aria-label="Login menu">
       <mat-icon>account_circle</mat-icon>
     </button>
-    <mat-menu #menu="matMenu">
+    <mat-menu #loginMenu="matMenu">
       <button mat-menu-item>
         <span mat-button [routerLink]="'/login'">Login</span>
       </button>
     </mat-menu>
   </mat-toolbar-row>
   <mat-toolbar-row>
-    <button mat-button [routerLink]="'/characters'">Personnages</button>
+    <button mat-button [matMenuTriggerFor]="characterMenu" aria-label="Character menu">
+      Personnage
+    </button>
+    <mat-menu #characterMenu="matMenu">
+      <button mat-menu-item>
+        <span mat-button [routerLink]="'/create-character'">Créer un personnage</span>
+      </button>
+      <button mat-menu-item>
+        <span mat-button [routerLink]="'/characters'">Personnages</span>
+      </button>
+    </mat-menu>
     <button mat-button [routerLink]="'/campagns'">Campagnes</button>
     <button mat-button [routerLink]="'/map'">Carte</button>
   </mat-toolbar-row>
