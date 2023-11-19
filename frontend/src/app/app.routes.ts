@@ -5,12 +5,14 @@ import { CharacterListComponent } from './core/components/character-list/charact
 import { CampagnListComponent } from './core/components/campagn-list/campagn-list.component';
 import { MapComponent } from './core/components/map/map.component';
 import { CharacterCreateComponent } from './core/components/character-create/character-create.component';
+import { CharacterDetailsComponent } from './core/components/character-details/character-details.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'characters', component: CharacterListComponent },
   { path: 'create-character', component: CharacterCreateComponent },
+  { path: 'characters/:id', component: CharacterDetailsComponent },
   { path: 'campagns', component: CampagnListComponent },
   { path: 'map', component: MapComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' }

@@ -25,3 +25,7 @@ table {
     align-items: center;
     justify-content: center;
   }
+
+  tr.mat-row:hover {
+    cursor: pointer;
+  }

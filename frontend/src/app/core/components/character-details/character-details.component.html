@@ -1,0 +1,9 @@
+<div *ngIf="currentCharacter !== null; else loadingTemplate">
+    <h4>Personnage</h4>
+    <p>{{currentCharacter?.name}}</p>
+    <button (click)="deleteCharacter()">Supprimer</button>
+</div>
+
+<ng-template #loadingTemplate>
+    <p>Loading...</p>
+</ng-template>

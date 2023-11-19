@@ -1,39 +1,147 @@
 <h1>Create Character</h1>
-<mat-stepper [linear]="true" #stepper>
-    <mat-step [stepControl]="nameFormGroup" errorMessage="Le nom du personnage est requis.">
-        <form [formGroup]="nameFormGroup">
-            <ng-template matStepLabel>Nom du personnage</ng-template>
-            <mat-form-field>
-                <mat-label>Nom</mat-label>
-                <input matInput placeholder="Prénom, Nom" formControlName="nameCtrl" required>
-            </mat-form-field>
+<div *ngIf="characterForm">
+    <mat-stepper [linear]="true" #stepper>
+        <mat-step [stepControl]="characterForm?.get('name')!" errorMessage="Le nom du personnage est requis.">
+            <form [formGroup]="characterForm">
+                <ng-template matStepLabel>Nom du personnage</ng-template>
+                <mat-form-field>
+                    <mat-label>Nom</mat-label>
+                    <input matInput placeholder="Prénom, Nom" formControlName="name" required>
+                    <mat-error *ngIf="characterForm?.get('name')!.hasError('required')">Le nom du personnage est
+                        requis</mat-error>
+                </mat-form-field>
+                <div>
+                    <p>blabla</p>
+                    <button mat-button matStepperNext>Suivant</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="characterForm?.get('concept')!" errorMessage="Le concept du personnage est requis.">
+            <form [formGroup]="characterForm">
+                <ng-template matStepLabel>Concept</ng-template>
+                <mat-form-field>
+                    <mat-label>Concept</mat-label>
+                    <input matInput placeholder="Ex. vampire alcoolique" formControlName="concept" required>
+                </mat-form-field>
+                <div>
+                    <p>Concept c'est blablabla.</p>
+                    <button mat-button matStepperPrevious>Précédent</button>
+                    <button mat-button matStepperNext>Suivant</button>
+                </div>
+            </form>
+        </mat-step>
+        <!-- Étape pour la description -->
+        <mat-step [stepControl]="characterForm?.get('description')!">
+            <form [formGroup]="characterForm">
+                <ng-template matStepLabel>Description</ng-template>
+                <mat-form-field>
+                    <mat-label>Description</mat-label>
+                    <input matInput placeholder="Description du personnage" formControlName="description" required>
+                    <mat-error *ngIf="characterForm?.get('description')!.hasError('required')">La description du
+                        personnage
+                        est requise.</mat-error>
+                </mat-form-field>
+            </form>
             <div>
-                <p>blabla</p>
-                <button mat-button matStepperNext>Suivant</button>
+                <button mat-button (click)="stepper.previous()">Précédent</button>
+                <button mat-button (click)="stepper.next()">Suivant</button>
             </div>
-        </form>
-    </mat-step>
-    <mat-step [stepControl]="conceptFormGroup" errorMessage="Le concept du personnage est requis.">
-        <form [formGroup]="conceptFormGroup">
-            <ng-template matStepLabel>Concept</ng-template>
-            <mat-form-field>
-                <mat-label>Concept</mat-label>
-                <input matInput placeholder="Ex. vampire alcoolique" formControlName="conceptCtrl" required>
-            </mat-form-field>
+        </mat-step>
+
+        <!-- Étape pour l'âge -->
+        <mat-step [stepControl]="characterForm?.get('age')!">
+            <form [formGroup]="characterForm">
+                <ng-template matStepLabel>Âge</ng-template>
+                <mat-form-field>
+                    <mat-label>Âge</mat-label>
+                    <input matInput placeholder="Âge du personnage" formControlName="age" required>
+                    <mat-error *ngIf="characterForm?.get('age')!.hasError('required')">L'âge du personnage est
+                        requis.</mat-error>
+                    <mat-error *ngIf="characterForm?.get('age')!.hasError('pattern')">L'âge du personnage doit être un
+                        nombre entier.</mat-error>
+                </mat-form-field>
+            </form>
             <div>
-                <p>Concept c'est blablabla.</p>
+                <button mat-button (click)="stepper.previous()">Précédent</button>
+                <button mat-button (click)="stepper.next()">Suivant</button>
+            </div>
+        </mat-step>
+        <mat-step [stepControl]="characterForm?.get('place')!">
+            <form [formGroup]="characterForm">
+                <ng-template matStepLabel>Lieu</ng-template>
+                <mat-form-field>
+                    <mat-label>Lieu</mat-label>
+                    <input matInput placeholder="Lieu du personnage" formControlName="place" required>
+                    <mat-error *ngIf="characterForm?.get('place')!.hasError('required')">Le lieu du personnage est
+                        requis.</mat-error>
+                </mat-form-field>
+            </form>
+            <div>
+                <button mat-button (click)="stepper.previous()">Précédent</button>
+                <button mat-button (click)="stepper.next()">Suivant</button>
+            </div>
+        </mat-step>
+
+        <mat-step [stepControl]="characterForm?.get('motivation')!">
+            <form [formGroup]="characterForm">
+                <ng-template matStepLabel>Motivation</ng-template>
+                <mat-form-field>
+                    <mat-label>Motivation</mat-label>
+                    <input matInput placeholder="Motivation du personnage" formControlName="motivation" required>
+                    <mat-error *ngIf="characterForm?.get('motivation')!.hasError('required')">La motivation du
+                        personnage
+                        est requise.</mat-error>
+                </mat-form-field>
+            </form>
+            <div>
+                <button mat-button (click)="stepper.previous()">Précédent</button>
+                <button mat-button (click)="stepper.next()">Suivant</button>
+            </div>
+        </mat-step>
+
+        <mat-step [stepControl]="characterForm?.get('quest')!">
+            <form [formGroup]="characterForm">
+                <ng-template matStepLabel>Quête</ng-template>
+                <mat-form-field>
+                    <mat-label>Quête</mat-label>
+                    <input matInput placeholder="Quête du personnage" formControlName="quest" required>
+                    <mat-error *ngIf="characterForm?.get('quest')!.hasError('required')">La quête du personnage est
+                        requise.</mat-error>
+                </mat-form-field>
+            </form>
+            <div>
+                <button mat-button (click)="stepper.previous()">Précédent</button>
+                <button mat-button (click)="stepper.next()">Suivant</button>
+            </div>
+        </mat-step>
+
+        <mat-step [stepControl]="characterForm?.get('ether')!">
+            <form [formGroup]="characterForm">
+                <ng-template matStepLabel>Éther</ng-template>
+                <mat-form-field>
+                    <mat-label>Éther</mat-label>
+                    <input matInput placeholder="Éther du personnage" formControlName="ether" required>
+                    <mat-error *ngIf="characterForm?.get('ether')!.hasError('required')">L'Éther du personnage est
+                        requis.</mat-error>
+                    <mat-error *ngIf="characterForm?.get('ether')!.hasError('pattern')">L'Éther du personnage doit être
+                        un nombre entier.</mat-error>
+                </mat-form-field>
+            </form>
+            <div>
+                <button mat-button (click)="stepper.previous()">Précédent</button>
+                <button mat-button (click)="stepper.next()">Suivant</button>
+            </div>
+        </mat-step>
+
+        <mat-step>
+            <ng-template matStepLabel>Fin</ng-template>
+            <p>C'est fini.</p>
+            <div>
                 <button mat-button matStepperPrevious>Précédent</button>
-                <button mat-button matStepperNext>Suivant</button>
+                <button mat-button (click)="stepper.reset()">Reset</button>
+                <button mat-button (click)="createCharacter()" [disabled]="loading">Valider</button>
+                <mat-spinner *ngIf="loading" diameter="30" color="accent"></mat-spinner>
             </div>
-        </form>
-    </mat-step>
-    <mat-step>
-        <ng-template matStepLabel>Fin</ng-template>
-        <p>C'est fini.</p>
-        <div>
-            <button mat-button matStepperPrevious>Précédent</button>
-            <button mat-button (click)="stepper.reset()">Reset</button>
-            <button mat-button (click)="createCharacter()">Valider</button>
-        </div>
-    </mat-step>
-</mat-stepper>
+        </mat-step>
+    </mat-stepper>
+</div>
