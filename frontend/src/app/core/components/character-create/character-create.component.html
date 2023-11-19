@@ -1,2 +1,39 @@
 <h1>Create Character</h1>
-<button (click)="createCharacter()">Create Character</button>
+<mat-stepper [linear]="true" #stepper>
+    <mat-step [stepControl]="nameFormGroup" errorMessage="Le nom du personnage est requis.">
+        <form [formGroup]="nameFormGroup">
+            <ng-template matStepLabel>Nom du personnage</ng-template>
+            <mat-form-field>
+                <mat-label>Nom</mat-label>
+                <input matInput placeholder="Prénom, Nom" formControlName="nameCtrl" required>
+            </mat-form-field>
+            <div>
+                <p>blabla</p>
+                <button mat-button matStepperNext>Suivant</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="conceptFormGroup" errorMessage="Le concept du personnage est requis.">
+        <form [formGroup]="conceptFormGroup">
+            <ng-template matStepLabel>Concept</ng-template>
+            <mat-form-field>
+                <mat-label>Concept</mat-label>
+                <input matInput placeholder="Ex. vampire alcoolique" formControlName="conceptCtrl" required>
+            </mat-form-field>
+            <div>
+                <p>Concept c'est blablabla.</p>
+                <button mat-button matStepperPrevious>Précédent</button>
+                <button mat-button matStepperNext>Suivant</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Fin</ng-template>
+        <p>C'est fini.</p>
+        <div>
+            <button mat-button matStepperPrevious>Précédent</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+            <button mat-button (click)="createCharacter()">Valider</button>
+        </div>
+    </mat-step>
+</mat-stepper>
