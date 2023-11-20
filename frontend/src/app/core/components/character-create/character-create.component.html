@@ -145,3 +145,66 @@
         </mat-step>
     </mat-stepper>
 </div>
+<mat-stepper [linear]="true" #stepper>
+    <mat-step [stepControl]="nameFormGroup" errorMessage="Le nom du personnage est requis.">
+        <form [formGroup]="nameFormGroup">
+            <ng-template matStepLabel>Nom du personnage</ng-template>
+            <mat-form-field>
+                <mat-label>Nom</mat-label>
+                <input matInput placeholder="Prénom, Nom" formControlName="nameCtrl" required>
+            </mat-form-field>
+            <div>
+                <p>blabla</p>
+                <button mat-button matStepperNext>Suivant</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="conceptFormGroup" errorMessage="Le concept du personnage est requis.">
+        <form [formGroup]="conceptFormGroup">
+            <ng-template matStepLabel>Concept</ng-template>
+            <mat-form-field>
+                <mat-label>Concept</mat-label>
+                <input matInput placeholder="Ex. vampire alcoolique" formControlName="conceptCtrl" required>
+            </mat-form-field>
+            <div>
+                <p>Concept c'est blablabla.</p>
+                <button mat-button matStepperPrevious>Précédent</button>
+                <button mat-button matStepperNext>Suivant</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Fin</ng-template>
+        <p>C'est fini.</p>
+        <div>
+            <button mat-button matStepperPrevious>Précédent</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+            <button mat-button (click)="createCharacter()">Valider</button>
+        </div>
+    </mat-step>
+</mat-stepper>
+<!--
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <mat-horizontal-stepper>
+      <mat-step *ngFor="let step of steps; let index = index; let last = last;">
+        <ng-template matStepLabel>{{ step.label }}</ng-template>
+        <formly-form
+          [form]="form.at(index)"
+          [model]="model"
+          [fields]="step.fields"
+          [options]="options[index]">
+        </formly-form>
+  
+        <div>
+          <button *ngIf="index !== 0" matStepperPrevious class="btn btn-primary" type="button" (click)="prevStep(index)">Back</button>
+          <button *ngIf="!last" matStepperNext class="btn btn-primary" type="button" [disabled]="!form.at(index).valid" (click)="nextStep(index)">Next</button>
+          <button *ngIf="last" class="btn btn-primary" [disabled]="!form.valid" type="submit">Submit</button>
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </form>
+  
+-->
+  <!-- Copyright 2018 Google Inc. All Rights Reserved.
+      Use of this source code is governed by an MIT-style license that
+      can be found in the LICENSE file at http://angular.io/license -->
