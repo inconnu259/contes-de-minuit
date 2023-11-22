@@ -6,10 +6,12 @@ import { CampagnListComponent } from './core/components/campagn-list/campagn-lis
 import { MapComponent } from './core/components/map/map.component';
 import { CharacterCreateComponent } from './core/components/character-create/character-create.component';
 import { CharacterDetailsComponent } from './core/components/character-details/character-details.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'profile', component: ProfileComponent },
   { path: 'characters', component: CharacterListComponent },
   { path: 'create-character', component: CharacterCreateComponent },
   { path: 'characters/:id', component: CharacterDetailsComponent },

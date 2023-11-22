@@ -8,7 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { ApiService } from '../../../api.service';
+import { ApiService } from '../../../_services/api.service';
 import { Character } from '../../../models/character.model';
 
 @Component({

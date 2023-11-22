@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ApiService } from '../../../api.service';
+import { ApiService } from '../../../_services/api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Character } from '../../../models/character.model';
 

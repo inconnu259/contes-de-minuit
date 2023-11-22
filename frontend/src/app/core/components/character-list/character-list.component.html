@@ -32,4 +32,5 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/characters', row.id]"></tr>
         </table>
     </div>
+    <button mat-button [routerLink]="['/create-character']">Créer un personnage</button>
 </div>

@@ -6,8 +6,11 @@
       <mat-icon>account_circle</mat-icon>
     </button>
     <mat-menu #loginMenu="matMenu">
-      <button mat-menu-item>
+      <button mat-menu-item *ngIf="!isLoggedIn">
         <span mat-button [routerLink]="'/login'">Login</span>
+      </button>
+      <button mat-menu-item *ngIf="isLoggedIn">
+        <span mat-button [routerLink]="'/'" (click)="logout()">Logout</span>
       </button>
     </mat-menu>
   </mat-toolbar-row>
